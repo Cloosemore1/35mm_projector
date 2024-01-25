@@ -1,4 +1,4 @@
-// Define pin connections & motor's steps per revolution
+// Define pin connections & motor's steps per frame
 const int stepPin = 10;
 const int stepsPerFrame = 20; //10 frame/40 perf sprocket
 const int stepsPerPerf = stepsPerFrame / 4;
@@ -7,23 +7,13 @@ void setup()
 {
 	// Declare pins as outputs
 	pinMode(stepPin, OUTPUT);
-  
-  //come up to speed
-  for (int i = 1000; i < 5000; i++) {
-      digitalWrite(stepPin, HIGH);
-		  delayMicroseconds(1000000/i);
-		  digitalWrite(stepPin, LOW);
-		  delayMicroseconds(1000000/i);
-    }
 }
 
 void loop()
 {
-  //1,000,000 microseconds in one second
-  //24 frames per second
+  //1,000,000 microseconds in one second, 24 frames per second
   //41,666 microseconds per frame (truncated but will result in less than 1 frame deviation over multiple hours)
-  //31,266 microsecond dwell period per frame
-  //10,400 microsecond moving time
+  //31,266 microsecond dwell period per frame, 10,400 microsecond moving time
   //for 20 step frame movement, 10 steps for acceleration and 10 for decceleration
   //Average pulse period needs to be 10,400/20 = 520
 
